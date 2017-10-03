@@ -1,0 +1,10 @@
+{
+  "name": "karaoke-server",
+  "version": "0.1.0",
+  "description": "Server for karaoke",
+  "main": "index.ts",
+  "repository": "https://github.com/kdesput",
+  "author": "Krzysztof Desput",
+  "license": "MIT",
+  "private": true
+}

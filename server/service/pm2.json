@@ -1,0 +1,17 @@
+{
+    "apps": [
+        {
+            "name": "karaoke-server",
+            "script": "bin/server.ts",
+            "watch": true,
+            "ignore_watch": [
+                "node_modules"
+            ],
+            "source_map_support": true,
+            "cwd": "/var/app/packages/reports-server",
+            "env": {
+                "PORT": "80"
+            }
+        }
+    ]
+}
