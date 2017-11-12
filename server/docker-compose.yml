@@ -1,23 +1,29 @@
 version: "3"
 
 services:
-  mongodb:
-    image: mongo:latest
-    container_name: "mongodb"
-    environment:
-      - MONGO_DATA_DIR=/data/db
-      - MONGO_LOG_DIR=/dev/null
-    volumes:
-      - ./data/db:/data/db
+  elasticsearch:
+    image: elasticsearch:2.3
     ports:
-      - 27017:27017
-    command: mongod --smallfiles --logpath=/dev/null # --quiet
+      - "9200:9200"
+
+
+  redis:
+    image: redis
 
   karaoke-server:
     build:
       context: .
-      dockerfile: service/Dockerfile
+      dockerfile: Dockerfile
+    command: ts-node bin/server.ts
+    environment:
+      DB_HOST: elasticsearch
+      DB_PORT: 9200
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     volumes:
-      - ./package:/var/app/
+      - ./app:/var/app
+    links:
+      - redis
+      - elasticsearch
     ports:
       - "80:80"

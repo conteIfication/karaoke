@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["es6"],
+    "module": "commonjs",
+    "outDir": "dist",
+    "types": ["node", "mocha", "reflect-metadata"],
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "files": [
+    "./node_modules/@types/mocha/index.d.ts",
+    "./node_modules/@types/node/index.d.ts"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "bin/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
