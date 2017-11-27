@@ -7,6 +7,8 @@ export interface Song {
   bpm?: number
   gap?: number
   lyrics?: Syllable[]
+  fullText?: string,
+  firstSyllablePosition?: number
 }
 
 export interface Syllable {

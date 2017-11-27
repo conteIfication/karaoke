@@ -13,7 +13,7 @@ export function router(context: interfaces.Context) {
   }
 
   router.use((req, res, next) => {
-    res.send(400)
+    res.sendStatus(400)
   })
 
   return router

@@ -1,3 +1,7 @@
 #!/bin/bash
-
-ts-node ./bin/console.ts $1 $2
+FILES=lyrics/*
+for file in $FILES
+do
+    ts-node ./bin/console.ts a:s "$file"
+    rm "$file"
+done

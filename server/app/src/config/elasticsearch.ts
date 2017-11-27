@@ -6,7 +6,10 @@ export function elasticsearch({ container }: interfaces.Context) {
 
     const elasticsearch = new Elasticsearch.Client({
         host: `${config.DB_HOST}:${config.DB_PORT}`,
-        log: 'trace'
+        log: [{
+            type: 'stdio',
+            levels: ['error']
+          }]
 
     })
 

@@ -1,6 +1,6 @@
 {
     "name": "karaoke-server",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Server for karaoke",
     "main": "bin/server.ts",
     "repository": "https://github.com/kdesput",
@@ -8,7 +8,8 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "test:unit": "mocha -r ts-node/register tests/unit/**/*.spec.ts"
+        "test:unit": "mocha -r ts-node/register tests/unit/**/*.spec.ts",
+        "test:functional": "mocha -r ts-node/register tests/functional/**/*.spec.ts"
     },
     "dependencies": {
         "@types/body-parser": "^1.16.5",
@@ -20,6 +21,7 @@
         "@types/mocha": "^2.2.44",
         "@types/redis": "^2.6.1",
         "@types/sinon": "^2.3.7",
+        "@types/supertest": "^2.0.4",
         "body-parser": "^1.18.2",
         "elasticsearch": "^13.3.1",
         "express": "^4.14.0",
@@ -32,6 +34,7 @@
         "chai": "^4.1.2",
         "mocha": "^4.0.1",
         "sinon": "^4.1.2",
+        "supertest": "^3.0.0",
         "ts-node": "^3.3.0",
         "typescript": "^2.6.1"
     }

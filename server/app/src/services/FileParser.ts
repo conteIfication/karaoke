@@ -2,22 +2,46 @@ import * as Redis from 'redis'
 import * as fs from 'fs'
 import { Song, Syllable } from '../models/Song'
 import { injectable } from 'inversify'
+import SpecialCharsRemover from './SpecialCharsRemover'
 
 @injectable()
-export default class FileParser {
+export class FileParser {
+
+    private specialCharsRemover: SpecialCharsRemover
+
+    constructor(specialCharsRemover: SpecialCharsRemover) {
+        this.specialCharsRemover = specialCharsRemover
+    }
+
+    private countPolishCharts(lyrics): number {
+        let counts = 0
+        for (let char of lyrics) {
+            if (char == 'ą' || char == 'ę' || char == 'ó' || char == 'ż' || char == 'ź' || char == 'ć' || char == 'ń' || char == 'ł' || char == 'ś') {
+                counts++
+            }
+        }
+
+        return counts
+    }
 
     private decode(content) {
         let iconv = require('iconv-lite')
-        let buffer = iconv.decode(content, 'iso-8859-2')
+        let bufferIso = iconv.decode(content, 'iso-8859-2')
+        let bufferWin = iconv.decode(content, 'win1251')
 
-        return buffer.toString('utf8')
+        let lyricsIso: string = bufferIso.toString('utf8')
+        let lyricsWin: string = bufferWin.toString('utf8')
+
+        return this.countPolishCharts(lyricsIso) > this.countPolishCharts(lyricsWin) ? lyricsIso : lyricsWin
     }
     public parseFile(filename: string): Song {
         let song: Song = {
             lyrics: []
         }
-        const data = fs.readFileSync(__dirname + '/../../lyrics/' + filename)
+        const data = fs.readFileSync(__dirname + '/../../' + filename)
         const rows = this.decode(data).split("\r\n");
+
+        song.fullText =''
 
         for (let row of rows) {
             if (row.charAt(0) === '#') {
@@ -47,7 +71,8 @@ export default class FileParser {
                 if (syllable.note !== '-') {
                     syllable.length = Number.parseInt(syllableData[2])
                     syllable.pitch = Number.parseInt(syllableData[3])
-                    syllable.text = syllableData[syllableData.length - 1] !== '' ? syllableData[syllableData.length - 1] : syllableData[syllableData.length - 2]
+                    syllable.text = syllableData[4] !== '' ? syllableData[4] : `${syllableData[4]}${syllableData[5]}`
+                    song.fullText += this.specialCharsRemover.removeSpecialChars(syllable.text)
                 }
                 song.lyrics.push(syllable)
             }

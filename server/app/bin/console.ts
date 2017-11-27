@@ -1,7 +1,7 @@
 import * as program from 'commander'
 import container from '../src/app'
 import * as express from 'express'
-import FileParser from '../src/services/FileParser'
+import { FileParser } from '../src/services/FileParser'
 
 const app = container.get<express.Application>('app')
 const elasticsearch = container.get<Elasticsearch.Client>('elasticsearch')
@@ -9,22 +9,6 @@ const elasticsearch = container.get<Elasticsearch.Client>('elasticsearch')
 
 program
     .version(require('../package.json').version)
-
-program
-    .command('create:index')
-    .alias('c:i')
-    .description('Create index in database')
-    .action(() => {
-        elasticsearch.indices.create({
-            index: 'karaoke'
-        }, (err, resp, status) => {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log('create', resp)
-            }
-        })
-    })
 
 program
     .command('add:song')
