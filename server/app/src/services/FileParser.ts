@@ -18,6 +18,8 @@ export class FileParser {
         for (let char of lyrics) {
             if (char == 'ą' || char == 'ę' || char == 'ó' || char == 'ż' || char == 'ź' || char == 'ć' || char == 'ń' || char == 'ł' || char == 'ś') {
                 counts++
+            } else if (char === '' || char === 'š') {
+                counts--
             }
         }
 
