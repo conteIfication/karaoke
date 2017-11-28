@@ -29,12 +29,18 @@ export class FileParser {
     private decode(content) {
         let iconv = require('iconv-lite')
         let bufferIso = iconv.decode(content, 'iso-8859-2')
-        let bufferWin = iconv.decode(content, 'win1251')
+        let bufferWin1251 = iconv.decode(content, 'win1251')
+        let bufferWin1250 = iconv.decode(content, 'win1250')
 
         let lyricsIso: string = bufferIso.toString('utf8')
-        let lyricsWin: string = bufferWin.toString('utf8')
+        let lyricsWin1251: string = bufferWin1251.toString('utf8')
+        let lyricsWin1250: string = bufferWin1250.toString('utf8')
 
-        return this.countPolishCharts(lyricsIso) > this.countPolishCharts(lyricsWin) ? lyricsIso : lyricsWin
+        if (this.countPolishCharts(lyricsWin1250) > this.countPolishCharts(lyricsWin1251)) {
+            return this.countPolishCharts(lyricsIso) > this.countPolishCharts(lyricsWin1250) ? lyricsIso : lyricsWin1250
+        } else {
+            return this.countPolishCharts(lyricsIso) > this.countPolishCharts(lyricsWin1251) ? lyricsIso : lyricsWin1251
+        }
     }
     public parseFile(filename: string): Song {
         let song: Song = {
