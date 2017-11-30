@@ -71,7 +71,7 @@ export class FileParser {
             } else if (row.charAt(0) === 'E') {
                 break
             } else {
-                let syllableData = row.split(' ')
+                let syllableData = this.splitText(row, ' ', 5)
                 let syllable: Syllable = {
                     note: syllableData[0],
                     position: Number.parseInt(syllableData[1])
@@ -79,11 +79,7 @@ export class FileParser {
                 if (syllable.note !== '-') {
                     syllable.length = Number.parseInt(syllableData[2])
                     syllable.pitch = Number.parseInt(syllableData[3])
-                    let text = ''
-                    for(let i = 4; i < syllableData.length; ++i) {
-                        text += syllableData[i] != '' ? syllableData[i] : ' '
-                    }
-                    syllable.text = text
+                    syllable.text = syllableData[4]
                     song.fullText += this.specialCharsRemover.removeSpecialChars(syllable.text)
                 }
                 song.lyrics.push(syllable)
@@ -93,4 +89,13 @@ export class FileParser {
         return song
     }
 
+    private splitText(text: string, delimiter: string, maxLength: number) {
+        let returnedArray = []
+        returnedArray = text.split(delimiter)
+        if(returnedArray.length > maxLength) {
+            returnedArray.push(returnedArray.splice(maxLength-1, returnedArray.length-maxLength+1).join(delimiter))
+        }
+
+        return returnedArray
+    }
 }
