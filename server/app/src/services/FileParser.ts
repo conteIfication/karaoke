@@ -79,7 +79,11 @@ export class FileParser {
                 if (syllable.note !== '-') {
                     syllable.length = Number.parseInt(syllableData[2])
                     syllable.pitch = Number.parseInt(syllableData[3])
-                    syllable.text = syllableData[4] !== '' ? syllableData[4] : `${syllableData[4]}${syllableData[5]}`
+                    let text = ''
+                    for(let i = 4; i < syllableData.length; ++i) {
+                        text += syllableData[i]
+                    }
+                    syllable.text = text
                     song.fullText += this.specialCharsRemover.removeSpecialChars(syllable.text)
                 }
                 song.lyrics.push(syllable)
