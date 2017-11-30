@@ -81,7 +81,7 @@ export class FileParser {
                     syllable.pitch = Number.parseInt(syllableData[3])
                     let text = ''
                     for(let i = 4; i < syllableData.length; ++i) {
-                        text += syllableData[i]
+                        text += syllableData[i] != '' ? syllableData[i] : ' '
                     }
                     syllable.text = text
                     song.fullText += this.specialCharsRemover.removeSpecialChars(syllable.text)
