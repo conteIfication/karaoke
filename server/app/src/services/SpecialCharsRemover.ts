@@ -14,5 +14,6 @@ export default class SpecialCharsRemover {
             .replace(/:/g, '')
             .replace(/~/g, '')
             .replace(/-/g, '')
+            .replace(/"/g, '')
     }
 }
