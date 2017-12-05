@@ -25,7 +25,6 @@ export class SongSearcher {
       }
     }).then(resp => {
       if (resp.hits.hits.length > 0) {
-        console.log('ooo')
         return JSON.stringify(resp.hits.hits[0]['_source'])
       } else {
         return null

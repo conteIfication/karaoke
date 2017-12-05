@@ -19,6 +19,7 @@
         "@types/iconv-lite": "0.0.1",
         "@types/inversify": "^2.0.33",
         "@types/mocha": "^2.2.44",
+        "@types/moment": "^2.13.0",
         "@types/redis": "^2.6.1",
         "@types/sinon": "^2.3.7",
         "@types/supertest": "^2.0.4",
@@ -27,6 +28,7 @@
         "express": "^4.14.0",
         "iconv-lite": "^0.4.19",
         "inversify": "^4.3.0",
+        "moment": "^2.19.3",
         "redis": "^2.8.0",
         "reflect-metadata": "^0.1.10"
     },

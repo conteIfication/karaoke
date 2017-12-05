@@ -1,0 +1,29 @@
+{
+    "song": {
+        "title": "2 bajki",
+        "artist": "Virgin",
+        "bpm": 144.01,
+        "gap": 14300,
+        "firstSyllable": 10,
+        "lyrics": [
+            {
+                "note": ":",
+                "position": 0,
+                "length": 3,
+                "pitch": 3,
+                "text": "Ni"
+            },
+            {
+                "note": ":",
+                "position": 6,
+                "length": 10,
+                "pitch": 5,
+                "text": "gdy"
+            },
+            {
+                "note": "-",
+                "position": 22
+            }
+        ]
+    }
+}

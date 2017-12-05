@@ -17,6 +17,12 @@ import { songResultNormalizer } from './config/songResultNormalizer'
 import { fileParser } from './config/fileParser'
 import { apiRouter } from './routes/api'
 import { SongResultNormalizer } from './services/SongResultNormalizer'
+import { notFoundSongsSaver } from './config/notFoundSongsSaver'
+import { reportsGenerator } from './config/reportsGenerator'
+import { wrongSongsSaver } from './config/wrongSongsSaver'
+import { NotFoundSongsSaver } from './services/NotFoundSongsSaver'
+import { ReportsGenerator } from './services/ReportsGenerator'
+import { WrongSongsSaver } from './services/WrongSongsSaver'
 
 const container = new Container()
 
@@ -25,6 +31,9 @@ container.bind<Redis.RedisClient>('redis').toDynamicValue(redis).inSingletonScop
 container.bind<Elasticsearch.Client>('elasticsearch').toDynamicValue(elasticsearch).inSingletonScope()
 container.bind<PopularLyricsStorage>('popularLyricsStorage').toDynamicValue(popularLyricsStorage).inSingletonScope()
 container.bind<SongSearcher>('songSearcher').toDynamicValue(songSearcher).inSingletonScope()
+container.bind<NotFoundSongsSaver>('notFoundLyricsSaver').toDynamicValue(notFoundSongsSaver).inSingletonScope()
+container.bind<ReportsGenerator>('reportsGenerator').toDynamicValue(reportsGenerator).inSingletonScope()
+container.bind<WrongSongsSaver>('wrongSongsSaver').toDynamicValue(wrongSongsSaver).inSingletonScope()
 container.bind<SpecialCharsRemover>('specialCharsRemover').to(SpecialCharsRemover).inSingletonScope()
 container.bind<FileParser>('fileParser').toDynamicValue(fileParser).inSingletonScope()
 container.bind<SongResultNormalizer>('songResultNormalizer').toDynamicValue(songResultNormalizer).inSingletonScope()

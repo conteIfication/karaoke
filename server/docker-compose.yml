@@ -15,7 +15,7 @@ services:
 
   karaoke-server:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     command: ts-node bin/server.ts
     environment:
@@ -24,12 +24,18 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
     volumes:
-      - ./app:/var/app
+      - ./backend:/var/app
     links:
       - redis
       - elasticsearch
     ports:
       - "80:80"
+
+  admin-panel:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    
 
 volumes:
   es_data:
