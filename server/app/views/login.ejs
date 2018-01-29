@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SmartKaraoke</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container">
+            <div class="container-fluid">
+                    <% if (message != '') { %>
+                        <div class="alert alert-danger alert-dismissable">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <%= message %>
+                        </div>
+                        <% } %>
+                <h2 style="text-align:center; margin-bottom: 50px;">SmartKaraoke</h2>
+                <div class="panel panel-default" style="margin: auto 30%;">
+                    <div class="panel-heading">Enter the password to see the admin panel</div>
+                    <div class="panel-body" style="text-align:center;">
+                        <form method="post">
+                            <input type="password" class="form-control" id="password" name="password">
+                            <button style="margin:auto; margin-top:10px;" type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+</body>
+
+</html>
