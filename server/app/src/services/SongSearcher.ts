@@ -28,7 +28,7 @@ export class SongSearcher {
       if (resp.hits.total > 0) {
         const returnedArray = []
         let index = 0
-        while (index < resp.hits.total && resp.hits.hits[index]._score === resp.hits.max_score) {
+        while (index < 10 && index < resp.hits.total && resp.hits.hits[index]._score === resp.hits.max_score) {
           returnedArray.push(resp.hits.hits[index]['_source'])
           index++
         }
